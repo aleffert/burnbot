@@ -22,9 +22,9 @@ text = None
 for event in events:
     dflt_tz = dateutil.tz.tzoffset("EST", -18000)
     today = dateutil.utils.today(dflt_tz)
-    d = dateutil.parser.parse(contest['date']) - today
+    d = dateutil.parser.parse(event['date']) - today
     if d.days < 0:
-        continue # go to next contest
+        continue # go to next event
     elif d == 0:
         text = "The man burns tonight! Hopefully no one is reading this."
     elif d == 1:
