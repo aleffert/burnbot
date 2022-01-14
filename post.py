@@ -20,6 +20,9 @@ for event in events:
     dflt_tz = dateutil.tz.tzoffset("EST", -18000)
     today = dateutil.utils.today(dflt_tz)
     d = dateutil.parser.parse(event['date']) - today
+
+    print(f"Days remaining: {d.days}")
+
     if d.days < 0:
         continue # go to next event
     elif d.days == 0:
