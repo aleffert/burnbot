@@ -1,6 +1,5 @@
 import json
 import os
-import datetime
 import requests
 
 import dateutil.parser
@@ -8,11 +7,9 @@ import dateutil.utils
 import dateutil.tz
 
 
-events = [
-    {
-        "date": "2019-08-31 08:00:00 -0800"
-    }
-]
+events = [{
+    "date": "2020-09-04 08:00:00 -0800"
+}]
 
 # Just add in the 3 components of the Slack webhook URL: team, channel, secret token
 SLACK_WEBHOOK_TOKEN = os.getenv("SLACK_WEBHOOK_TOKEN", None)
@@ -25,13 +22,12 @@ for event in events:
     d = dateutil.parser.parse(event['date']) - today
     if d.days < 0:
         continue # go to next event
-    elif d == 0:
+    elif d.days == 0:
         text = "The man burns tonight! Hopefully no one is reading this."
-    elif d == 1:
+    elif d.days == 1:
         text = "The man burns tomorrow!"
-    else:
+    elif d.days < 90 or d.days % 7 == 0:
         text = "The man burns in %s days." % (d.days)
-
     break
 
 payload = {
