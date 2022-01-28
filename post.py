@@ -8,7 +8,7 @@ import dateutil.tz
 
 
 events = [{
-    "date": "2020-09-04 08:00:00 -0800"
+    "date": "2022-09-04 08:00:00 -0800"
 }]
 
 # Just add in the 3 components of the Slack webhook URL: team, channel, secret token
