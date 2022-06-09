@@ -11,7 +11,6 @@ events = [{
     "date": "2022-09-04 08:00:00 -0800"
 }]
 
-# Just add in the 3 components of the Slack webhook URL: team, channel, secret token
 SLACK_WEBHOOK_TOKEN = os.getenv("SLACK_WEBHOOK_TOKEN", None)
 SLACK_URL = "https://hooks.slack.com/services/%s" % SLACK_WEBHOOK_TOKEN
 
@@ -24,12 +23,12 @@ for event in events:
     print(f"Days remaining: {d.days}")
 
     if d.days < 0:
-        continue # go to next event
+        continue  # go to next event
     elif d.days == 0:
         text = "The man burns tonight! Hopefully no one is reading this."
     elif d.days == 1:
         text = "The man burns tomorrow!"
-    elif d.days < 90 or d.days % 7 == 0:
+    elif d.days < 45 or d.days % 7 == 0:
         text = "The man burns in %s days." % (d.days)
     break
 
@@ -43,4 +42,4 @@ print("Sending Payload:")
 print(json.dumps(payload, sort_keys=True))
 
 if text is not None and SLACK_WEBHOOK_TOKEN is not None:
-    requests.post(SLACK_URL, json = payload)
+    requests.post(SLACK_URL, json=payload)
