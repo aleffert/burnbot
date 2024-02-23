@@ -8,7 +8,7 @@ import dateutil.tz
 
 
 events = [{
-    "date": "2022-09-03 08:00:00 -0800"
+    "date": "2024-08-31 08:00:00 -0800"
 }]
 
 SLACK_WEBHOOK_TOKEN = os.getenv("SLACK_WEBHOOK_TOKEN", None)
