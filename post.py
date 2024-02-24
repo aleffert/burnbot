@@ -12,7 +12,6 @@ events = [{
 }]
 
 SLACK_WEBHOOK_TOKEN = os.getenv("SLACK_WEBHOOK_TOKEN", None)
-SLACK_URL = "https://hooks.slack.com/services/%s" % SLACK_WEBHOOK_TOKEN
 
 text = None
 for event in events:
@@ -42,4 +41,4 @@ print("Sending Payload:")
 print(json.dumps(payload, sort_keys=True))
 
 if text is not None and SLACK_WEBHOOK_TOKEN is not None:
-    requests.post(SLACK_URL, json=payload)
+    requests.post(SLACK_WEBHOOK_TOKEN, json=payload)

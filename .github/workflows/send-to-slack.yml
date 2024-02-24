@@ -1,0 +1,23 @@
+name: Send to Slack
+
+on:
+    schedule:
+        - cron: '0 10 * * *' # Every day at 10am
+    workflow_dispatch:
+
+jobs:
+    run:
+        runs-on: ubuntu-latest
+        env: 
+            SLACK_WEBHOOK_TOKEN: ${{ secrets.SLACK_WEBHOOK_TOKEN }}
+        steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+        - uses: actions/setup-python@v5
+          with:
+            python-version: '3.9'
+        - name: Run
+          run: |
+            pip install pipenv
+            pipenv sync
+            pipenv run python post.py
